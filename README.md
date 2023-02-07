@@ -1,1 +1,1 @@
-Hello
+![workflow](https://github.com/Jxcka15/Group-Project-Y2/actions/workflows/main.yml/badge.svg)
