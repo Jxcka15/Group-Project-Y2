@@ -1,5 +1,5 @@
 # Software Engineering Methods
-![GitHub Workflow Status (develop)](https://img.shields.io/github/workflow/status/Jxcka15/Group-Project-Y2/workflow/develop?style=flat-square)
+![GitHub Workflow Status (develop)](https://img.shields.io/github/workflow/status/Jxcka15/Group-Project-Y2/A-workflow-for-my-Hello-World-App/develop?style=flat-square)
 
 ![workflow](https://github.com/Jxcka15/Group-Project-Y2/actions/workflows/main.yml/badge.svg)
 
