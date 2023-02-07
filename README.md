@@ -4,4 +4,4 @@
 
 [![Releases](https://img.shields.io/github/release/Jxcka15/Group-Project-Y2/all.svg?style=flat-square)](https://github.com/Jxcka15/Group-Project-Y2/releases)
 
-![GitHub Workflow Status (branch)](https://img.shields.io/github/workflow/status/Jxcka15/Group-Project-Y2/main.yml/develop?style=flat-square)
+![GitHub Workflow Status (master)](https://img.shields.io/github/workflow/status/Jxcka15/Group-Project-Y2/workflow/master?style=flat-square)
