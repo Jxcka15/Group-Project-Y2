@@ -21,7 +21,7 @@ jobs:
       - name: Build with Maven
         run: mvn package
       - name: Build
-        run: docker build -t Coursework.
+        run: docker build -t coursework.
       - name: Run image
         run: docker run --network coursework --name semcontainer coursework
       - name: view logs
