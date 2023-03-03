@@ -48,6 +48,7 @@ public class App
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "Coursework");
+//                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "Coursework");
                 System.out.println("Successfully connected");
                 break;
             }
