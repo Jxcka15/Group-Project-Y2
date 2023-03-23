@@ -4,7 +4,7 @@ import java.sql.*;
 
 public class App
 {//Change this
-    public static void main(String[] args) {
+    public static <Country> void main(String[] args) {
         // Create new Application and connect to database
         App a = new App();
 
@@ -14,17 +14,10 @@ public class App
             a.connect(args[0], Integer.parseInt(args[1]));
         }
 
-        Department dept = a.getDepartment("Development");
-        ArrayList<World> employees = a.getSalariesByDepartment(dept);
-
-
-        // Print salary report
-        a.printSalaries(employees);
-
         // Disconnect from database
         a.disconnect();
     }
- //CHANGE THIS
+
     public void connect(String location, int delay) {
         try {
             // Load Database driver
