@@ -84,22 +84,21 @@ public class World
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
                 // Extract employee information
-                ArrayList<Employee> employees = new ArrayList<Employee>();
+                ArrayList<Employee> world = new ArrayList<World>();
                 while (rset.next())
                 {
-                    Employee emp = new Employee();
-                    emp.emp_no = rset.getInt("employees.emp_no");
-                    emp.first_name = rset.getString("employees.first_name");
-                    emp.last_name = rset.getString("employees.last_name");
-                    emp.salary = rset.getInt("salaries.salary");
-                    employees.add(emp);
+                    World world = new World();
+                    world.country = rset.getInt("employees.emp_no");
+                    world.continent = rset.getString("employees.first_name");
+                    world.city = rset.getString("employees.last_name");
+                    world.add(world);
                 }
                 return employees;
             }
             catch (Exception e)
             {
                 System.out.println(e.getMessage());
-                System.out.println("Failed to get salary details");
+                System.out.println("Failed to get Country details");
                 return null;
 
             }
@@ -109,25 +108,25 @@ public class World
          * Prints a list of cities.
          * @param. CHANGE THIS
          */
-        public void printSalaries(ArrayList<Employee> employees)
+        public void printWorld(ArrayList<World> world)
         {
             // Check employees is not null
-            if (employees == null)
+            if (world == null)
             {
-                System.out.println("No employees");
+                System.out.println("No matches");
                 return;
             }
             // Print header
-            System.out.println(String.format("%-10s %-15s %-20s %-8s", "Emp No", "First Name", "Last Name", "Salary"));
+            System.out.println(String.format("%-10s %-15s %-20s %-8s", "Country", "City", "Continent"));
             // Loop over all employees in the list
-            for (Employee emp : employees)
+            for (World world : world)
             {
-                if (emp == null)
+                if (world == null)
                     continue;
-                String emp_string =
+                String world_string =
                         String.format("%-10s %-15s %-20s %-8s",
-                                emp.emp_no, emp.first_name, emp.last_name, emp.salary);
-                System.out.println(emp_string);
+                                world.country, world.city, world.continent);
+                System.out.println(world_string);
             }
         }
     }
