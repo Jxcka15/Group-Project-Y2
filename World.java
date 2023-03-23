@@ -49,7 +49,7 @@ public class World
             // Check one is returned
             if (rset.next())
             {
-                World world = new Employee();
+                World world = new World();
                 world.city = rset.getInt("city");
                 world.continent = rset.getString("continent");
                 world.country = rset.getString("country");
@@ -63,5 +63,16 @@ public class World
             System.out.println(e.getMessage());
             System.out.println("Failed to get world details");
             return null;
+        }
+
+        public void displayWorld(World world)
+        {
+            if (world != null)
+            {
+                System.out.println(
+                        world.city + " "
+                                + world.continent + " "
+                                + world.country + "\n");
+            }
         }
     }
