@@ -3,6 +3,7 @@ package com.napier.sem;
 /**
  * Represents an employee
  */
+@Test
 public class World
 {
     /**
@@ -32,6 +33,7 @@ public class World
 
 }
 
+    @Test
     public World getWorld(int ID)
     {
         try
