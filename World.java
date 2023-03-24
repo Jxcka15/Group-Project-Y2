@@ -107,7 +107,7 @@ public class World
 
         /**
          * Prints a list of cities.
-         * @param. CHANGE THIS
+         * @param.
          */
         public void printSalaries(ArrayList<Employee> employees)
         {
