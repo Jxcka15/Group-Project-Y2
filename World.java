@@ -77,10 +77,10 @@ public class World
                 Statement stmt = con.createStatement();
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT employees.emp_no, employees.first_name, employees.last_name, salaries.salary "
-                                + "FROM employees, salaries "
-                                + "WHERE employees.emp_no = salaries.emp_no AND salaries.to_date = '9999-01-01' "
-                                + "ORDER BY employees.emp_no ASC";
+                        "SELECT ID, Name, CountryCode, District, Population"
+                                + "FROM World";
+
+
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
                 // Extract employee information
@@ -88,9 +88,9 @@ public class World
                 while (rset.next())
                 {
                     World world = new World();
-                    world.country = rset.getInt("employees.emp_no");
-                    world.continent = rset.getString("employees.first_name");
-                    world.city = rset.getString("employees.last_name");
+                    world.country = rset.getInt("country")
+                    world.continent = rset.getString("continent")
+                    world.city = rset.getString("city")
                     world.add(world);
                 }
                 return employees;
@@ -106,7 +106,7 @@ public class World
 
         /**
          * Prints a list of cities.
-         * @param. CHANGE THIS
+         * @param.
          */
         public void printWorld(ArrayList<World> world)
         {
