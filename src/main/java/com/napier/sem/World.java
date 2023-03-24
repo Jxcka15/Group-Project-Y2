@@ -1,10 +1,10 @@
 package com.napier.sem;
-
+import java.sql.*;
+import java.util.ArrayList;
 /**
  * Represents an employee
  */
-public class World
-{
+public class World {
     /**
      * City Population
      */
@@ -13,7 +13,7 @@ public class World
     /**
      * City name
      */
-    public String City;
+    public String city;
 
     /**
      * Continent of city
@@ -30,73 +30,61 @@ public class World
      */
     public String language;
 
-}
-
-    public World getWorld(int country)
-    {
-        try
-        {
-            // Create an SQL statement
-            Statement stmt = con.createStatement();
+    public World getWorld(Statement stmt, String country) {
+        try {
             // Create string for SQL statement
             String strSelect =
                     "SELECT city, continent, country "
-                            + "FROM world ";
+                            + "FROM world "
+                            + "WHERE country = "
+                            +  country;
 
             // Execute SQL statement
             ResultSet rset = stmt.executeQuery(strSelect);
             // Return new employee if valid.
             // Check one is returned
-            if (rset.next())
-            {
+            if (rset.next()) {
                 World world = new World();
-                world.city = rset.getInt("city");
+                world.city = rset.getString("city");
                 world.continent = rset.getString("continent");
                 world.country = rset.getString("country");
-                return World;
-            }
-            else
+                return world;
+            } else
                 return null;
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             System.out.println(e.getMessage());
             System.out.println("Failed to get world details");
             return null;
         }
+    }
 
         /**
          * Gets all the current countries and cities.
          * @return A list of all countries and cities, or null if there is an error.
          */
-        public ArrayList<World> getWorld()
+        public ArrayList<World> getWorld (Statement stmt)
         {
-            try
-            {
-                // Create an SQL statement
-                Statement stmt = con.createStatement();
+            try {
                 // Create string for SQL statement
                 String strSelect =
-                        "SELECT ID, Name, CountryCode, District, Population"
+                        "SELECT ID, CountryCode, District, Population"
                                 + "FROM World";
-
 
                 // Execute SQL statement
                 ResultSet rset = stmt.executeQuery(strSelect);
                 // Extract employee information
-                ArrayList<Employee> world = new ArrayList<World>();
-                while (rset.next())
-                {
+                ArrayList<World> worlds = new ArrayList<World>();
+                while (rset.next()) {
                     World world = new World();
-                    world.country = rset.getInt("country")
-                    world.continent = rset.getString("continent")
-                    world.city = rset.getString("city")
-                    world.add(world);
+                    world.country = rset.getString("country");
+                    world.continent = rset.getString("continent");
+                    world.city = rset.getString("city");
+                    worlds.add(world);
+
                 }
-                return employees;
-            }
-            catch (Exception e)
-            {
+                return worlds;
+
+            } catch (Exception e) {
                 System.out.println(e.getMessage());
                 System.out.println("Failed to get Country details");
                 return null;
@@ -108,19 +96,17 @@ public class World
          * Prints a list of cities.
          * @param.
          */
-        public void printWorld(ArrayList<World> world)
+        public void printWorld(ArrayList <World> worlds)
         {
             // Check employees is not null
-            if (world == null)
-            {
+            if (worlds == null) {
                 System.out.println("No matches");
                 return;
             }
             // Print header
             System.out.println(String.format("%-10s %-15s %-20s %-8s", "Country", "City", "Continent"));
             // Loop over all employees in the list
-            for (World world : world)
-            {
+            for (World world : worlds) {
                 if (world == null)
                     continue;
                 String world_string =
@@ -130,3 +116,4 @@ public class World
             }
         }
     }
+}
