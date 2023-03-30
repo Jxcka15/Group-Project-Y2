@@ -10,9 +10,8 @@ public class App
 
         a.connect("localhost:33060", 30000);
 
-        World world = new World();
-        world.getWorld(con.createStatement());
-
+        //World world = new World();
+        //world.getWorld(con.createStatement());
 
         // Disconnect from database
         a.disconnect();
@@ -52,7 +51,7 @@ public class App
     /**
      * Connection to MySQL database.
      */
-    private static Connection con = null;
+    public static Connection con = null;
 
     /**
      * Connect to the MySQL database.
