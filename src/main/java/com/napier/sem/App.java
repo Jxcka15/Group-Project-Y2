@@ -36,7 +36,7 @@ public class App
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://" + location
                                 + "/world?allowPublicKeyRetrieval=true&useSSL=false",
-                        "root", "example");
+                        "root", "Coursework");
                 System.out.println("Successfully connected");
                 break;
             } catch (SQLException sqle) {
