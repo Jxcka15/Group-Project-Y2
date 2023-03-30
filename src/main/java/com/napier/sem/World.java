@@ -1,6 +1,9 @@
 package com.napier.sem;
 import java.sql.*;
 import java.util.ArrayList;
+
+import static com.napier.sem.App.con;
+
 /**
  * Represents an employee
  */
@@ -48,13 +51,13 @@ public class World {
             // Check one is returned
             if (rset.next())
             {
-                World emp = new World();
-                emp.population = rset.getInt("population");
-                emp.city = rset.getString("city");
-                emp.continent = rset.getString("continent");
-                emp.country = rset.getString("country");
+                World w = new World();
+                w.population = rset.getInt("population");
+                w.city = rset.getString("city");
+                w.continent = rset.getString("continent");
+                w.country = rset.getString("country");
 
-                return emp;
+                return w;
             }
             else
                 return null;
@@ -62,7 +65,7 @@ public class World {
         catch (Exception e)
         {
             System.out.println(e.getMessage());
-            System.out.println("Failed to get employee details");
+            System.out.println("Failed to get details");
             return null;
         }
     }
