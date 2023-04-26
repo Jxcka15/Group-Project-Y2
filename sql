@@ -50,13 +50,44 @@ SELECT Name, Population
 FROM city
 ORDER BY Population DESC;
 
-All the cities in a continent organised by largest population to smallest.
+#All the cities in a continent organised by largest population to smallest.
 
 SELECT city.Name, city.Population
 FROM city
 JOIN country ON city.CountryCode = country.Code
 WHERE country.Continent = 'your_continent_name'
 ORDER BY city.Population DESC;
+
+#All the cities in a region organised by largest population to smallest.
+
+SELECT city.Name, city.Population
+FROM city
+JOIN country ON city.CountryCode = country.Code
+WHERE country.Region = 'your_region_name'
+ORDER BY city.Population DESC;
+
+#All the cities in a country organised by largest population to smallest.
+
+SELECT Name, Population
+FROM city
+WHERE CountryCode = 'your_country_code'
+ORDER BY Population DESC;
+
+#All the cities in a district organised by largest population to smallest.
+
+SELECT Name, Population
+FROM city
+WHERE District = 'your_district_name'
+ORDER BY Population DESC;
+
+#The top N populated cities in the world where N is provided by the user.
+
+SELECT Name, Population
+FROM city
+ORDER BY Population DESC
+LIMIT N;
+
+#
 
 
 
