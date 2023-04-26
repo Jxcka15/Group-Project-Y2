@@ -186,6 +186,49 @@ FROM country
 JOIN city ON country.code=city.countrycode
 GROUP BY country.name;
 
+#The population of the world.
+
+SELECT SUM(population) AS total_population
+FROM country;
+
+#The population of a continent.
+
+SELECT SUM(population) AS total_population
+FROM country
+WHERE continent='<continent>';
+
+#The population of a region.
+
+SELECT SUM(population) AS total_population
+FROM country
+WHERE region='<region>';
+
+#The population of a country.
+
+SELECT population
+FROM country
+WHERE name='<country>';
+
+#The population of a district.
+
+SELECT population
+FROM city
+WHERE name='<city>' AND district='<district>';
+
+#The population of a city.
+
+SELECT population
+FROM city
+WHERE name='<city>';
+
+
+
+
+
+
+
+
+
 
 
 
