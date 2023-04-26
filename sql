@@ -127,6 +127,41 @@ JOIN country ON city.id=country.capital
 WHERE country.continent='<continent>'
 ORDER BY population DESC;
 
+#All the capital cities in a continent organised by largest population to smallest.
+
+SELECT *
+FROM city
+JOIN country ON city.id=country.capital
+WHERE country.continent='<continent>'
+ORDER BY population DESC;
+
+#All the capital cities in a region organised by largest to smallest.
+
+SELECT *
+FROM city
+JOIN country ON city.id=country.capital
+WHERE country.region='<region>'
+ORDER BY population DESC;
+
+#The top N populated capital cities in the world where N is provided by the user.
+
+SELECT *
+FROM city
+JOIN country ON city.id=country.capital
+WHERE country.continent='<continent>'
+ORDER BY population DESC LIMIT <N>;
+
+#The top N populated capital cities in a continent where N is provided by the user.
+
+SELECT *
+FROM city
+JOIN country ON city.id=country.capital
+WHERE country.continent='<continent>'
+ORDER BY population DESC LIMIT <N>;
+
+
+
+
 
 
 
