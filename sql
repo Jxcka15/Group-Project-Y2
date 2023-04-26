@@ -221,6 +221,47 @@ SELECT population
 FROM city
 WHERE name='<city>';
 
+#Number of people who speak Chinese
+
+SELECT language, SUM(population) AS total_population,
+ROUND(SUM(population)/(SELECT SUM(population) FROM country)*100,2) AS percentage_of_world_population
+FROM countrylanguage
+WHERE language='Chinese'
+GROUP BY language;
+
+#Number of people who speak English
+
+SELECT language, SUM(population) AS total_population,
+ROUND(SUM(population)/(SELECT SUM(population) FROM country)*100,2) AS percentage_of_world_population
+FROM countrylanguage
+WHERE language='English'
+GROUP BY language;
+
+#Number of people who speak Hindi
+
+SELECT language, SUM(population) AS total_population,
+ROUND(SUM(population)/(SELECT SUM(population) FROM country)*100,2) AS percentage_of_world_population
+FROM countrylanguage
+WHERE language='Hindi'
+GROUP BY language;
+
+#Number of people who speak Spanish
+
+SELECT language, SUM(population) AS total_population,
+ROUND(SUM(population)/(SELECT SUM(population) FROM country)*100,2) AS percentage_of_world_population
+FROM countrylanguage
+WHERE language='Spanish'
+GROUP BY language;
+
+#Number of people who speak Arabic
+
+SELECT language, SUM(population) AS total_population,
+ROUND(SUM(population)/(SELECT SUM(population) FROM country)*100,2) AS percentage_of_world_population
+FROM countrylanguage
+WHERE language='Arabic'
+GROUP BY language;
+
+
 
 
 
