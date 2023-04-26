@@ -261,6 +261,52 @@ FROM countrylanguage
 WHERE language='Arabic'
 GROUP BY language;
 
+#Country Report
+
+SELECT code, name, continent, region, population, city.name AS capital
+FROM country
+LEFT JOIN city ON country.capital = city.id;
+
+#City Report
+
+SELECT name, country.name AS country, district, population
+FROM city
+JOIN country ON city.countrycode = country.code;
+
+#Capital City Report
+
+SELECT city.name AS capital_city, country.name AS country, city.population
+FROM country
+JOIN city ON country.capital = city.id;
+
+#Continent population report
+
+SELECT continent AS name, SUM(population) AS total_population,
+ROUND((SUM(city.population)/SUM(population))*100,2) AS percentage_living_in_cities,
+ROUND(((SUM(population)-SUM(city.population))/SUM(population))*100,2) AS percentage_not_living_in_cities
+FROM country
+LEFT JOIN city ON country.code = city.countrycode
+GROUP BY continent;
+
+#Region population report
+
+SELECT region AS name, SUM(population) AS total_population,
+ROUND((SUM(city.population)/SUM(population))*100,2) AS percentage_living_in_cities,
+ROUND(((SUM(population)-SUM(city.population))/SUM(population))*100,2) AS percentage_not_living_in_cities
+FROM country
+LEFT JOIN city ON country.code = city.countrycode
+GROUP BY region;
+
+#Country population report
+
+SELECT name AS name, population AS total_population,
+ROUND((SUM(city.population)/population)*100,2) AS percentage_living_in_cities,
+ROUND(((population-SUM(city.population))/population)*100,2) AS percentage_not_living_in_cities
+FROM country
+LEFT JOIN city ON country.code = city.countrycode
+GROUP BY code;
+
+
 
 
 
