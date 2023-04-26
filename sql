@@ -87,7 +87,48 @@ FROM city
 ORDER BY Population DESC
 LIMIT N;
 
-#
+#The top N populated cities in a continent where N is provided by the user.
+
+SELECT city.Name, city.Population
+FROM city
+JOIN country ON city.CountryCode = country.Code
+WHERE country.Continent = 'your_continent_name'
+ORDER BY city.Population DESC
+LIMIT N;
+
+#The top N populated cities in a region where N is provided by the user.
+
+SELECT city.Name, city.Population
+FROM city
+JOIN country ON city.CountryCode = country.Code
+WHERE country.Region = 'your_region_name'
+ORDER BY city.Population DESC
+LIMIT N;
+
+#The top N populated cities in a country where N is provided by the user.
+
+SELECT *
+FROM city
+WHERE countrycode='<country>'
+ORDER BY population DESC LIMIT <N>;
+
+#The top N populated cities in a district where N is provided by the user.
+
+SELECT *
+FROM city
+WHERE district='<district>'
+ORDER BY population DESC LIMIT <N>;
+
+#All the capital cities in the world organised by largest population to smallest.
+
+SELECT *
+FROM city
+JOIN country ON city.id=country.capital
+WHERE country.continent='<continent>'
+ORDER BY population DESC;
+
+
+
 
 
 
