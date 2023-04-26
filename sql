@@ -159,7 +159,35 @@ JOIN country ON city.id=country.capital
 WHERE country.continent='<continent>'
 ORDER BY population DESC LIMIT <N>;
 
-#
+#The top N populated capital cities in a region where N is provided by the user.
+
+SELECT *
+FROM city
+JOIN country ON city.id=country.capital
+WHERE country.region='<region>'
+ORDER BY population DESC LIMIT <N>;
+
+#The population of people, people living in cities, and people not living in cities in each continent.
+
+SELECT continent, SUM(population) AS total_population, SUM(IF(isurban=1, population, 0)) AS urban_population, SUM(IF(isurban=0, population, 0)) AS rural_population
+FROM country JOIN city ON country.code=city.countrycode
+GROUP BY continent;
+
+#The population of people, people living in cities, and people not living in cities in each region.
+
+SELECT region, SUM(population) AS total_population, SUM(IF(isurban=1, population, 0)) AS urban_population, SUM(IF(isurban=0, population, 0)) AS rural_population
+FROM country JOIN city ON country.code=city.countrycode
+GROUP BY region;
+
+#The population of people, people living in cities, and people not living in cities in each country.
+
+SELECT country.name, SUM(country.population) AS total_population, SUM(IF(city.isurban=1, city.population, 0)) AS urban_population, SUM(IF(city.isurban=0, city.population, 0)) AS rural_population
+FROM country
+JOIN city ON country.code=city.countrycode
+GROUP BY country.name;
+
+
+
 
 
 
