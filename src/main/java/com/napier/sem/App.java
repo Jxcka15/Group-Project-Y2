@@ -2,57 +2,41 @@ package com.napier.sem;
 
 import java.sql.*;
 
-public class App
-{//Change this
-    public static void main(String[] args) throws SQLException {
-        // Create new Application and connect to database
+public class App {
+
+    public static void main(String[] args) {
+        // Create new Application
         App a = new App();
 
-        a.connect("localhost:33060", 30000);
+        // Connect to database
+        a.connect();
 
-        //World world = new World();
-        //world.getWorld(con.createStatement());
+        // Print top N most populated cities in the world
+        try {
+            City[] cities = City.getNMostPopulatedCitiesInWorld(10);
+            System.out.println("Top 10 most populated cities in the world:");
+            for (City city : cities) {
+                city.display();
+            }
+        } catch (SQLException e) {
+            System.out.println("Error retrieving cities: " + e.getMessage());
+        }
+
+        // Print top N most populated cities in a continent
+        City[] cities = City.getNMostPopulatedCitiesInContinent(10, "Europe");
+        System.out.println("Top 10 most populated cities in Europe:");
+        for (City city : cities) {
+            city.display();
+        }
 
         // Disconnect from database
         a.disconnect();
     }
 
-    public void connect(String location, int delay) {
-        try {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        int retries = 10;
-        for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...");
-            try {
-                // Wait a bit for db to start
-                Thread.sleep(delay);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location
-                                + "/world?allowPublicKeyRetrieval=true&useSSL=false",
-                        "root", "Coursework");
-                System.out.println("Successfully connected");
-                break;
-            } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " + Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
-            }
-        }
-    }
-
-
     /**
      * Connection to MySQL database.
      */
-    public static Connection con = null;
-
+    private Connection con = null;
     /**
      * Connect to the MySQL database.
      */
@@ -79,7 +63,6 @@ public class App
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "Coursework");
-//                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "Coursework");
                 System.out.println("Successfully connected");
                 break;
             }
