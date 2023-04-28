@@ -7,3 +7,5 @@
 
 [![Releases](https://img.shields.io/github/release/Jxcka15/Group-Project-Y2/all.svg?style=flat-square)](https://github.com/Jxcka15/Group-Project-Y2/releases)
 
+9 REQUIREMENTS OUT OF 32 HAVE BEEN IMPLEMENTED WHICH IS 28.1%
+

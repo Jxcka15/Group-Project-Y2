@@ -1,63 +1,44 @@
 package com.napier.sem;
 
 import java.sql.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RestController;
 
-public class App
-{//Change this
-    public static <Country> void main(String[] args) {
-        // Create new Application and connect to database
-        App a = new App();
+@SpringBootApplication
+@RestController
 
-        if(args.length < 1){
-            a.connect("localhost:33060", 30000);
-        }else{
-            a.connect(args[0], Integer.parseInt(args[1]));
-        }
+public class App {
 
-        // Disconnect from database
-        a.disconnect();
-    }
+    public static void main(String[] args) {
 
-    public void connect(String location, int delay) {
-        try {
-            // Load Database driver
-            Class.forName("com.mysql.cj.jdbc.Driver");
-        } catch (ClassNotFoundException e) {
-            System.out.println("Could not load SQL driver");
-            System.exit(-1);
-        }
-
-        int retries = 10;
-        for (int i = 0; i < retries; ++i) {
-            System.out.println("Connecting to database...");
-            try {
-                // Wait a bit for db to start
-                Thread.sleep(delay);
-                // Connect to database
-                con = DriverManager.getConnection("jdbc:mysql://" + location
-                                + "/employees?allowPublicKeyRetrieval=true&useSSL=false",
-                        "root", "example");
-                System.out.println("Successfully connected");
-                break;
-            } catch (SQLException sqle) {
-                System.out.println("Failed to connect to database attempt " +                                  Integer.toString(i));
-                System.out.println(sqle.getMessage());
-            } catch (InterruptedException ie) {
-                System.out.println("Thread interrupted? Should not happen.");
+        {
+            // Connect to database
+            if (args.length < 1)
+            {
+                connect("localhost:33060");
             }
-        }
-    }
+            else
+            {
+                connect(args[0]);
+            }
 
+            SpringApplication.run(App.class, args);
+        }
+
+
+
+
+    }
 
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
-
+    private static Connection con = null;
     /**
      * Connect to the MySQL database.
      */
-    public void connect()
+    public static void connect(String arg)
     {
         try
         {
@@ -80,7 +61,6 @@ public class App
                 Thread.sleep(30000);
                 // Connect to database
                 con = DriverManager.getConnection("jdbc:mysql://db:3306/world?useSSL=false", "root", "Coursework");
-//                con = DriverManager.getConnection("jdbc:mysql://localhost:33060/world?useSSL=false", "root", "Coursework");
                 System.out.println("Successfully connected");
                 break;
             }
@@ -99,7 +79,7 @@ public class App
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect()
+    public static void disconnect()
     {
         if (con != null)
         {
