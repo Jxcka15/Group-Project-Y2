@@ -35,6 +35,7 @@ public class PopulationReport {
         }
     }
 
+
     // Display all the countries in the world organized by largest population to smallest
     public void displayAllCountriesByPopulation() {
         try {
@@ -113,6 +114,8 @@ public class PopulationReport {
         } catch (Exception e) {
             System.out.println(e.getMessage());
         }
+
+
     }
 
     // Main method
@@ -131,6 +134,7 @@ public class PopulationReport {
 
         // Display all the countries in the Caribbean organized by largest population to smallest
         pr.displayCountriesByRegionPopulation("Caribbean");
+
 
         // Disconnect from the database
         pr.disconnect();
