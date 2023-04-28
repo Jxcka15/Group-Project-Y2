@@ -1,35 +1,10 @@
 package com.napier.sem;
 
 import java.sql.*;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.web.bind.annotation.RestController;
 
-@SpringBootApplication
-@RestController
 
 public class App {
 
-    public static void main(String[] args) {
-
-        {
-            // Connect to database
-            if (args.length < 1)
-            {
-                connect("localhost:33060");
-            }
-            else
-            {
-                connect(args[0]);
-            }
-
-            SpringApplication.run(App.class, args);
-        }
-
-
-
-
-    }
 
     /**
      * Connection to MySQL database.
