@@ -1,5 +1,8 @@
 package com.napier.sem;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -275,6 +278,26 @@ public class City {
             System.out.println("Error retrieving cities: " + e.getMessage());
         }
         return cities;
+    }
+
+    public class ReportWriter {
+
+        public static void writeCitiesToMarkdown(City[] cities, String reportTitle, String filePath) throws IOException, IOException {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(filePath));
+            writer.write("# " + reportTitle + "\n\n");
+            writer.write("| ID | Name | Country | District | Population | Continent |\n");
+            writer.write("| -- | ---- | ------- | -------- | ---------- | --------- |\n");
+
+            for (City city : cities) {
+                writer.write("| " + city.getId() + " | " + city.getName() + " | " + city.getCountry() + " | " + city.getDistrict() + " | " + city.getPopulation() + " | " + city.getContinent() + " |\n");
+            }
+
+            try {
+                writer.close();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+        }
     }
 
 }

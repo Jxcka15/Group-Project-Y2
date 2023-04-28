@@ -1,15 +1,32 @@
 package com.napier.sem;
 
 import java.sql.*;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.web.bind.annotation.RestController;
+
+@SpringBootApplication
+@RestController
 
 public class App {
 
     public static void main(String[] args) {
-        // Create new Application
-        App a = new App();
 
-        // Connect to database
-        a.connect();
+        {
+            // Connect to database
+            if (args.length < 1)
+            {
+                connect("localhost:33060");
+            }
+            else
+            {
+                connect(args[0]);
+            }
+
+            SpringApplication.run(App.class, args);
+        }
+
+
 
         // Print top N most populated cities in the world
         try {
@@ -29,18 +46,17 @@ public class App {
             city.display();
         }
 
-        // Disconnect from database
-        a.disconnect();
+
     }
 
     /**
      * Connection to MySQL database.
      */
-    private Connection con = null;
+    private static Connection con = null;
     /**
      * Connect to the MySQL database.
      */
-    public void connect()
+    public static void connect(String arg)
     {
         try
         {
@@ -81,7 +97,7 @@ public class App {
     /**
      * Disconnect from the MySQL database.
      */
-    public void disconnect()
+    public static void disconnect()
     {
         if (con != null)
         {
