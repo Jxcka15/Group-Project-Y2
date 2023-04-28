@@ -28,24 +28,6 @@ public class App {
 
 
 
-        // Print top N most populated cities in the world
-        try {
-            City[] cities = City.getNMostPopulatedCitiesInWorld(10);
-            System.out.println("Top 10 most populated cities in the world:");
-            for (City city : cities) {
-                city.display();
-            }
-        } catch (SQLException e) {
-            System.out.println("Error retrieving cities: " + e.getMessage());
-        }
-
-        // Print top N most populated cities in a continent
-        City[] cities = City.getNMostPopulatedCitiesInContinent(10, "Europe");
-        System.out.println("Top 10 most populated cities in Europe:");
-        for (City city : cities) {
-            city.display();
-        }
-
 
     }
 
