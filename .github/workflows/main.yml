@@ -56,6 +56,12 @@ jobs:
           flags: Integration Tests # optional
           verbose: true # optional (default = false)
   build:
+    run: docker container cp sem_world_app:./tmp/reports ./
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@v4.2.5
+        with:
+          branch: reports # The branch the action should deploy to.
+          folder: reports # The folder we are copying
     name: Build Run in Docker and Deploy Release
     runs-on: ubuntu-20.04
     steps:
@@ -79,3 +85,6 @@ jobs:
           automatic_release_tag: "latest"
           files: |
             ./target/*.jar
+            
+                  - name: Copy Output
+        
